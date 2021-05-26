@@ -3,6 +3,8 @@ const app = express();
 const port = 8002;
 
 
+app.use('/',require('./routes'));
+
 
 
 
