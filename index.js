@@ -9,6 +9,10 @@ app.use(expressLayout);
 // static files assets
 app.use(express.static('./assets'));
 
+// allow diff  css, scripts for individual pages and add them in layout correct place
+app.set('layout extractStyles' , true);
+app.set('layout extractScripts' , true);
+
 // router
 app.use('/',require('./routes'));
 
