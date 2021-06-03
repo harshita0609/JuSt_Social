@@ -2,6 +2,15 @@ const express = require('express');
 const port = 8002;
 const app = express();
 
+// mongoose
+const db = require('./config/mongoose');
+
+// cookie parser
+const cookieParser = require('cookie-parser');
+
+app.use(express.urlencoded());
+app.use(cookieParser());
+
 // layouts
 const expressLayout = require('express-ejs-layouts')
 app.use(expressLayout);
