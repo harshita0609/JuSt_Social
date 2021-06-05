@@ -44,4 +44,23 @@ passport.deserializeUser(function(id,done){
     });
 });
 
+
+// to send data to views and to authenticate user so that profile page can be accessed 
+
+passport.checkAuthentication = function(req, res, next){
+
+    if(req.isAuthenticated()){
+        return next();
+    }
+    return res.redirect('/users/sign-in');
+};
+
+passport.setAuthenticatedUser= function(req,res,next){
+    if(req.isAuthenticated()){
+        res.locals.user = req.user;
+    }
+
+    next();
+};
+
 module.exports = passport;

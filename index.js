@@ -51,6 +51,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// middleware for views locals sign in 
+app.use(passport.setAuthenticatedUser)
+
 // router
 app.use('/',require('./routes'));
 
