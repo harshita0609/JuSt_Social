@@ -1,12 +1,19 @@
 const express = require('express');
+// cookie parser
+const cookieParser = require('cookie-parser');
+
 const port = 8002;
 const app = express();
 
 // mongoose
 const db = require('./config/mongoose');
 
-// cookie parser
-const cookieParser = require('cookie-parser');
+// express session for cookies in passport js
+const session = require('express-session');
+const passport= require('passport');
+const passportLocal = require('./config/passport-local-strategy');
+
+
 
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -22,13 +29,30 @@ app.use(express.static('./assets'));
 app.set('layout extractStyles' , true);
 app.set('layout extractScripts' , true);
 
-// router
-app.use('/',require('./routes'));
 
 
 // view template
 app.set('view engine','ejs');
 app.set('views','./views');
+
+// passport middleware  --> shifted router middle ware after this
+
+app.use(session({
+
+        name: 'JuSt_Social',
+        secret:'abcdefgh',
+        saveUninitialized:false,
+        resave:false,
+        cookie:{
+            maxAge: (1000*60*60)
+        }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+// router
+app.use('/',require('./routes'));
 
 
 app.listen(port,function(err){
