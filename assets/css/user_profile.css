@@ -1,10 +1,7 @@
-body{
-    
-    background-color: rgb(158, 219, 123);
-    text-align:center;
-    margin: 0px;
+body {
+  background-color: #9edb7b;
+  text-align: center;
+  margin: 0px; }
 
-}   
-h1{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
